@@ -6,6 +6,7 @@
 <meta name="description" content="Albion AI — приложение для распознавания объектов, настройки автоматического наведения и визуализации.">
 <meta name="color-scheme" content="dark">
 <title>Albion AI — контроль в каждом движении</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&display=swap&subset=cyrillic" rel="stylesheet">
 <style>
 :root{--bg:#0b0c10;--panel:#111217;--raised:#1c1d23;--line:#30313a;--text:#f4f4f6;--muted:#b8b9c2;--red:#ff5968;--red-dark:#30151b;--max:1120px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);background:var(--bg)}
 *{box-sizing:border-box}[hidden]{display:none!important}html{scroll-behavior:smooth}body{margin:0;min-width:320px;font-size:16px;line-height:1.55;background:var(--bg);color:var(--text)}a{color:inherit}a,button{font:inherit}button{cursor:pointer}img,video{display:block;max-width:100%;height:auto}::selection{background:#ff5968;color:#0b0c10}:focus-visible{outline:3px solid #fff;outline-offset:4px}.wrap{width:min(var(--max),calc(100% - 64px));margin:0 auto}.skip{position:absolute;left:12px;top:-100px;z-index:20;padding:12px;background:#fff;color:#111}.skip:focus{top:12px}.site-header{border-bottom:1px solid #272830;background:#0b0c10}.nav{min-height:88px;display:flex;align-items:center;gap:32px}.brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;white-space:nowrap;font-weight:750;letter-spacing:-.03em;font-size:19px;min-height:44px}.brand-mark{display:inline-block;width:10px;height:10px;background:var(--red);border-radius:50%;box-shadow:0 0 20px #ff59686a}.brand span:last-child{color:var(--red)}.nav-links{display:flex;align-items:center;gap:28px;margin-left:auto}.nav-links a{display:flex;align-items:center;min-height:44px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:600}.nav-links a:hover{color:var(--text)}.nav-cta{gap:8px;padding:0 16px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #51525d;border-radius:7px;text-decoration:none;font-size:14px;font-weight:650;white-space:nowrap;transition:border-color .2s,background .2s}.nav-cta:hover{background:var(--raised);border-color:#8e909b}
@@ -21,28 +22,158 @@ section[id]{scroll-margin-top:24px}.section{padding:112px 0;border-bottom:1px so
 /* Interactive controls layered over the supplied screenshots. */
 .playground-intro{margin:52px 0 20px;display:flex;align-items:end;justify-content:space-between;gap:24px}.playground-intro h3{font-size:26px;line-height:1.2;letter-spacing:-.03em}.playground-intro p{margin-top:8px;color:var(--muted);max-width:640px}.playground{border:1px solid #3e404a;border-radius:10px;overflow:hidden;background:#111217}.playground-top{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #30313a}.playground-top strong{font-size:14px;letter-spacing:.08em;text-transform:uppercase}.playground-top span{color:#c1c2ca;font-size:14px}.snap-tabs{display:flex;flex-wrap:wrap;gap:4px;padding:8px 12px;border-bottom:1px solid #30313a;overflow-x:auto}.snap-tabs button{flex:0 0 auto;min-height:44px;padding:0 16px;border:0;border-radius:6px;color:#c6c6cf;background:transparent;font-size:14px;font-weight:650}.snap-tabs button:hover{background:#202129;color:#fff}.snap-tabs button[aria-selected=true]{color:#fff;background:#2a2027;box-shadow:inset 0 -2px 0 var(--red)}.snap-scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-color:#757680 #1c1d23}.snap-stage{width:1000px;max-width:none;margin-inline:auto;position:relative;isolation:isolate}.snap-stage>img{width:100%;height:auto;display:block}.snap-panel{margin:0}.snap-hint{padding:14px 18px;color:#c4c5cd;font-size:14px;border-top:1px solid #30313a}.snap-hint strong{color:#fff}.snap-scroll:focus-visible{outline-offset:-4px}.snap-stage .over{position:absolute;box-sizing:border-box}.snap-range{display:flex;align-items:center;gap:3%;padding:0 1%;background:#111217;color:#eaeaf0}.snap-range input[type=range]{width:78%;height:100%;min-width:0;margin:0;cursor:pointer;appearance:none;-webkit-appearance:none;background:transparent;accent-color:#ff3548}.snap-range input[type=range]::-webkit-slider-runnable-track{height:7px;border-radius:9px;background:linear-gradient(to right,#ff3548 0 var(--fill,50%),#30313a var(--fill,50%) 100%)}.snap-range input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:19px;height:19px;margin-top:-6px;border:0;border-radius:50%;background:#ff3548;box-shadow:0 0 0 3px #ff35482c}.snap-range input[type=range]::-moz-range-track{height:7px;border-radius:9px;background:#30313a}.snap-range input[type=range]::-moz-range-progress{height:7px;background:#ff3548}.snap-range input[type=range]::-moz-range-thumb{width:19px;height:19px;border:0;border-radius:50%;background:#ff3548}.snap-range output{flex:1;white-space:nowrap;text-align:center;font-size:17px;font-variant-numeric:tabular-nums}.snap-radio{display:flex;align-items:center;gap:4px;padding:0 3px;background:#111217}.snap-radio label{display:flex;align-items:center;gap:4px;min-height:44px;padding:0 5px;font-size:17px;color:#d2d2d9;white-space:nowrap;cursor:pointer}.snap-radio input{width:17px;height:17px;accent-color:#ff3548;margin:0}.snap-stage select,.snap-stage input[type=text]{background:#1c1d23;color:#f4f4f6;border:1px solid #44454f;border-radius:5px;padding:0 12px;font-family:inherit;font-size:17px}.snap-select{height:7.1%;cursor:pointer}.snap-visual-button{position:absolute;display:flex;align-items:center;gap:14px;padding:0 4px;border:0;background:#111217;color:#e4e4e9;font:17px system-ui,sans-serif;text-align:left;cursor:pointer;white-space:nowrap}.snap-visual-button::before{content:"";width:19px;height:19px;flex:0 0 19px;border:1px solid #45464e;border-radius:4px;background:#1c1d23}.snap-visual-button[aria-pressed=true]::before{content:"✓";color:white;line-height:18px;text-align:center;background:#df3448;border-color:#df3448}.snap-visual-button:hover{background:#1c1d23}.snap-config-list{padding:5px 12px!important;overflow:auto;border:0!important;border-radius:0!important}.snap-config-list option{padding:4px}.snap-config-input{height:7.5%}.snap-config-action{position:absolute;min-height:44px;display:flex;justify-content:center;align-items:center;border:0;border-radius:5px;color:#fff;background:#b9252d;font:700 17px system-ui,sans-serif;cursor:pointer}.snap-config-action:hover{background:#e33b4a}.snap-config-action:disabled{background:#30313a;color:#b8b9c2;cursor:not-allowed}.snap-config-action.minor{background:#1c1d23;border:1px solid #44454f;font-size:19px}.snap-config-action.minor:hover{background:#353640}.snap-status{padding:12px 18px;color:#d7d7de;font-size:14px;min-height:48px;border-top:1px solid #30313a}.snap-stage :focus-visible{outline:3px solid white;outline-offset:-3px}.snap-hit{position:absolute;border:0;border-radius:5px;background:transparent;cursor:pointer}.snap-hit:hover{background:#fff2}.snap-scroll-note{display:none}@media(max-width:600px){.snap-tabs button{flex:1 1 45%}}@media(max-width:1040px){.snap-scroll-note{display:inline}.playground-intro{display:block}.playground-top{align-items:flex-start;flex-direction:column;gap:4px}}@media(prefers-reduced-motion:reduce){.snap-tabs button,.snap-config-action{transition:none}}
 
+/* ===== Nyron-style theme (адаптация под Albion AI) ===== */
+:root{--accent:#ff3d55;--accent-2:#ff6b7d;--accent-rgb:255,61,85;--bg:#0b0b0b;--panel:#121212;--raised:#191919;--line:#262626;--muted:#b4b4b4;--red:var(--accent);--cut:14px;
+  font-family:"Exo 2",system-ui,-apple-system,"Segoe UI",sans-serif}
+body{background:transparent;font-family:"Exo 2",system-ui,sans-serif}
+::selection{background:var(--accent);color:#0b0b0b}
+#net{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(900px 600px at 80% 0%,rgba(var(--accent-rgb),.10),transparent 70%),radial-gradient(700px 500px at 0% 100%,rgba(var(--accent-rgb),.06),transparent 70%),var(--bg)}
+
+/* cut-corner surfaces with 1px border */
+.cut{position:relative;isolation:isolate;background:var(--line);border:0!important;border-radius:0!important;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%)}
+.cut::before{content:"";position:absolute;inset:1px;z-index:-1;background:var(--panel);
+  clip-path:polygon(0 0,100% 0,100% calc(100% - var(--cut) + .4px),calc(100% - var(--cut) + .4px) 100%,0 100%)}
+.cut.tl{clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut))}
+.cut.tl::before{clip-path:polygon(calc(var(--cut) - .4px) 0,100% 0,100% calc(100% - var(--cut) + .4px),calc(100% - var(--cut) + .4px) 100%,0 100%,0 calc(var(--cut) - .4px))}
+.cut.glow{background:linear-gradient(135deg,rgba(var(--accent-rgb),.85),rgba(var(--accent-rgb),.25) 40%,rgba(var(--accent-rgb),.6))}
+.cut.glow::before{background:#0e0e0e}
+
+/* header */
+.site-header{background:transparent;border-bottom:0}
+.nav{min-height:112px;gap:28px}
+.brand{font-size:24px;font-weight:800;letter-spacing:0;gap:12px}
+.brand-mark{width:34px;height:34px;background:none;border-radius:0;box-shadow:none}
+.brand-mark svg{width:100%;height:100%;display:block}
+.brand span:last-child{color:var(--accent)}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:999px;background:var(--accent);color:#fff;font-size:13px;font-weight:600;white-space:nowrap}
+.badge svg{width:16px;height:16px}
+.nav-links{gap:44px}
+.nav-links a{color:#fff;font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+.nav-links a:hover{color:var(--accent-2)}
+.nav-cta{border:0;border-radius:0;padding:0;color:var(--accent);font-size:17px;font-weight:800;text-transform:uppercase}
+.nav-cta:hover{background:none;color:var(--accent-2)}
+
+/* hero */
+.hero{border-bottom:0;overflow:visible}
+.hero::before{display:none}
+.hero-grid{min-height:0;padding:56px 0 72px;grid-template-columns:1.05fr 1fr;gap:56px}
+h1{font-size:clamp(42px,4.7vw,66px);line-height:1.18;letter-spacing:-.01em;font-weight:800;margin:0 0 28px}
+h1 .brand-word{white-space:nowrap}
+.outline{color:transparent;-webkit-text-stroke:2px var(--accent);paint-order:stroke}
+.hero-copy>p{font-size:22px;line-height:1.5;font-weight:300;color:#dedede;max-width:440px}
+.actions{gap:16px;margin-top:40px}
+.btn{border-radius:0;border:0!important;min-height:52px;padding:12px 22px;font-size:16px;font-weight:600;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-2)}
+.btn-secondary{background:#191919;color:#fff}
+.btn-secondary:hover{background:#242424}
+.screen-frame{box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(var(--accent-rgb),.08);--cut:18px}
+.screen-frame img{position:relative}
+.product-visual::before{display:none}
+.visual-label{border-top:1px solid #262626;letter-spacing:.06em}
+
+/* stat cards under hero */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-bottom:96px}
+.stat{padding:24px;min-height:190px}
+.icon-tile{width:52px;height:52px;display:grid;place-items:center;background:#1d1d1d;margin-bottom:24px}
+.icon-tile svg{width:28px;height:28px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stat h3{font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+.stat p{margin-top:10px;color:#cfcfcf;font-size:16px;line-height:1.5;font-weight:300}
+
+/* sections */
+.section{border-bottom:0;padding:104px 0}
+.sequence,.demo-section{background:transparent}
+.section h2,.final-inner h2,.faq h2{font-weight:800;letter-spacing:-.01em;line-height:1.15}
+h2 em,.faq h2 em{font-style:normal;color:var(--accent)}
+.section-index{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;letter-spacing:.04em}
+.section-index span{margin:0;width:0;height:0;overflow:hidden;border-left:10px solid var(--accent);border-top:8px solid transparent;border-bottom:8px solid transparent;font-size:0}
+.section-lead,.sequence-intro p,.demo-copy p{font-weight:300;color:#d2d2d2}
+
+.feature-grid{background:none;border:0;border-radius:0;overflow:visible;gap:24px}
+.feature{padding:28px;min-height:250px}
+.feature .icon-tile{margin-bottom:0}
+.feature-number{display:none}
+.feature h3{margin-top:24px;font-size:20px;font-weight:800}
+.feature p{font-weight:300;color:#cfcfcf}
+.mini-note span{color:var(--accent);font-size:11px;line-height:2}
+
+.sequence-list{border-top:0;display:grid;gap:14px}
+.step{border-bottom:0;padding:22px 24px;--cut:12px}
+.step-num{color:var(--accent);font-weight:800;font-size:18px}
+.step h3{font-weight:800}
+.replay{border:0;border-radius:0;background:#191919;clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%)}
+.sequence-progress i{background:var(--accent)}
+
+.playground{--panel:#111}
+.snap-stage,.snap-stage select,.snap-stage input,.snap-stage button,.snap-stage label,.snap-stage output{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.playground-top,.snap-tabs,.snap-hint,.snap-status{border-color:#262626!important}
+.snap-tabs button{border-radius:0;font-weight:700}
+.snap-tabs button[aria-selected=true]{background:rgba(var(--accent-rgb),.12);box-shadow:inset 0 -2px 0 var(--accent)}
+.shot-title{font-weight:800}
+.shot a:hover .shot-open{color:var(--accent)}
+.video-frame{--panel:#0a0a0a;--cut:18px}
+.video-caption{position:relative}
+
+/* FAQ */
+.faq{padding:104px 0 40px}
+.faq h2{text-align:center;font-size:clamp(34px,4vw,52px);margin-bottom:40px}
+.faq-list{max-width:864px;margin:0 auto;display:grid;gap:16px}
+.faq details{--cut:12px}
+.faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px;padding:16px 24px;cursor:pointer;font-size:19px;font-weight:800}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";width:12px;height:12px;flex:none;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(45deg) translateY(-4px);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
+.faq details p{padding:0 24px 24px;color:#cfcfcf;font-weight:300;line-height:1.65}
+.faq details a{color:var(--accent-2)}
+.disclaimer{max-width:864px;margin:72px auto 0;display:flex;gap:20px;align-items:center;padding:24px 28px}
+.disclaimer svg{width:40px;height:40px;flex:none;stroke:#fff;fill:none;stroke-width:2}
+.disclaimer b{display:block;font-size:17px;font-weight:700}
+.disclaimer p{margin-top:4px;color:#c8c8c8;font-size:14px;line-height:1.55}
+
+.final{padding:72px 0 104px}
+.final-inner{padding:48px;--panel:#111;--cut:20px}
+.eyebrow{color:var(--accent)}
+.eyebrow::before{background:var(--accent)}
+
+.footer{border-top:0;background:#141414;padding:28px 0}
+.footer-inner .left{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.footer-inner .left b{color:#fff}
+.footer-inner .sep{width:1px;height:18px;background:#333}
+.footer a{color:#fff}
+
+@media(max-width:1100px){.badge{display:none}.nav-links{gap:28px}}
+@media(max-width:920px){.stats{grid-template-columns:1fr 1fr}.hero-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.nav{min-height:0;padding:20px 0 8px}.nav-links{gap:0 20px}.nav-links a{font-size:14px}.nav-cta{display:none}
+  .hero-grid{padding:32px 0 56px}.hero-copy>p{font-size:18px}.stats{grid-template-columns:1fr;gap:16px;padding-bottom:64px}.stat{min-height:0}
+  .faq summary{font-size:17px;min-height:64px;padding:14px 18px}.faq details p{padding:0 18px 18px}.disclaimer{flex-direction:column;align-items:flex-start;padding:22px}
+  .outline{-webkit-text-stroke-width:1.5px}}
+@media(prefers-reduced-motion:reduce){.faq summary::after{transition:none}}
 </style>
 </head>
 <body>
+<canvas id="net" aria-hidden="true"></canvas>
 <a class="skip" href="#main">Перейти к содержимому</a>
 <header class="site-header"><div class="wrap nav">
-<a class="brand" href="#top" aria-label="Albion AI — на главную"><i class="brand-mark" aria-hidden="true"></i>Albion<span>AI</span></a>
-<nav class="nav-links" aria-label="Основная навигация"><a href="#features">Возможности</a><a href="#interface">Интерфейс</a><a href="#demo">Демонстрация</a></nav>
-<a class="nav-cta" href="#demo">Смотреть демонстрацию <span aria-hidden="true">↗</span></a>
+<a class="brand" href="#top" aria-label="Albion AI — на главную"><i class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 36 17 4h7L11 36z" fill="#fff"/><path d="M22 14l14 22h-8l-10-16z" fill="var(--accent)"/></svg></i>Albion<span>AI</span></a><span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" fill="#fff" stroke="none"/><path d="m7.5 12 3 3 6-6" stroke="var(--accent)"/></svg>Инструмент для Windows</span>
+<nav class="nav-links" aria-label="Основная навигация"><a href="#features">Возможности</a><a href="#interface">Интерфейс</a><a href="#demo">Демонстрация</a><a href="#faq">FAQ</a></nav>
+<a class="nav-cta" href="#demo">Видео <span aria-hidden="true">↗</span></a>
 </div></header>
 <main id="main">
 <section class="hero" id="top"><div class="wrap hero-grid">
-<div class="hero-copy reveal"><div class="eyebrow">Инструмент для Windows</div><h1>Контроль в&nbsp;каждом движении.</h1><p>Распознавание объектов, автоматическое наведение и визуализация — с настройками под ваш сценарий.</p><div class="actions"><a class="btn btn-primary" href="#demo">Смотреть демонстрацию <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="#interactive-demo">Попробовать интерфейс <span aria-hidden="true">↓</span></a></div><div class="hero-meta">ALBION AI <span aria-hidden="true">/</span> РЕАЛЬНЫЙ ИНТЕРФЕЙС</div></div>
-<div class="product-visual reveal" style="--delay:120ms"><div class="screen-frame"><img src="assets/photo_2026-11-04_05-50-34.jpg" width="806" height="501" alt="Окно настроек Albion AI: скорость прицела, область захвата и другие параметры."><div class="visual-label"><b>Панель управления</b><span><span class="dot">●</span> Скриншот приложения</span></div></div></div>
-</div></section>
-<section class="section" id="features"><div class="wrap"><div class="section-head reveal"><div><div class="section-index"><span>01 /</span> ВОЗМОЖНОСТИ</div><h2>Настройка под&nbsp;вас.</h2></div><p class="section-lead">Основные параметры собраны в одном интерфейсе — от области захвата до сохранения конфигураций.</p></div>
-<div class="feature-grid"><article class="feature reveal"><div class="feature-number">01</div><h3>Управление наведением</h3><p>Скорость, область захвата, часть тела и смещение по вертикали.</p></article><article class="feature reveal" style="--delay:80ms"><div class="feature-number">02</div><h3>Метод и траектория</h3><p>Выбор способа наведения и формы движения в настройках приложения.</p></article><article class="feature reveal" style="--delay:160ms"><div class="feature-number">03</div><h3>Визуализация</h3><p>Область захвата, распознанные объекты, статус и уверенность на экране.</p></article><article class="feature reveal"><div class="feature-number">04</div><h3>Модель</h3><p>Выбор модели распознавания и настройка порога уверенности.</p></article><article class="feature reveal" style="--delay:80ms"><div class="feature-number">05</div><h3>Конфигурации</h3><p>Сохранение и загрузка настроек для разных сценариев.</p></article><article class="feature reveal" style="--delay:160ms"><div class="feature-number">06</div><h3>Под рукой</h3><p>Ключевые параметры и состояние приложения доступны в одном окне.</p></article></div>
-<div class="mini-note"><span aria-hidden="true">✳</span><p>Возможности и показатели зависят от версии приложения, выбранной модели и оборудования.</p></div></div></section>
-<section class="section sequence" id="workflow"><div class="wrap sequence-layout"><div class="sequence-intro reveal"><div class="section-index"><span>02 /</span> ОБЗОР</div><h2>От распознавания<br>к настройке.</h2><p>Четыре части интерфейса помогают увидеть, как устроен рабочий процесс.</p><button class="replay" type="button" hidden>↻ &nbsp;Повторить анимацию</button><div class="sequence-progress" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i></div></div>
-<ol class="sequence-list" aria-label="Обзор возможностей"><li class="step reveal" style="--i:0"><span class="step-num">01</span><div><h3>Распознавание</h3><p>Выберите модель и настройте порог уверенности.</p></div></li><li class="step reveal" style="--i:1"><span class="step-num">02</span><div><h3>Наведение</h3><p>Задайте скорость, область захвата и метод движения.</p></div></li><li class="step reveal" style="--i:2"><span class="step-num">03</span><div><h3>Визуализация</h3><p>Включите отображение нужной информации на экране.</p></div></li><li class="step reveal" style="--i:3"><span class="step-num">04</span><div><h3>Конфигурация</h3><p>Сохраните настройки, чтобы загрузить их позже.</p></div></li></ol></div></section>
-<section class="section" id="interface"><div class="wrap"><div class="section-head reveal"><div><div class="section-index"><span>03 /</span> ИНТЕРФЕЙС</div><h2>Всё на своих местах.</h2></div><p class="section-lead">Настоящие экраны приложения — без концептов и условных макетов.</p></div>
+<div class="hero-copy reveal"><h1>Контроль в&nbsp;каждом движении с <span class="brand-word">ALBION <span class="outline">AI</span></span></h1><p>Распознавание объектов, автоматическое наведение и визуализация — с настройками под ваш сценарий.</p><div class="actions"><a class="btn btn-primary" href="#demo">Смотреть демо <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="#interactive-demo">Попробовать интерфейс <span aria-hidden="true">↓</span></a></div></div>
+<div class="product-visual reveal" style="--delay:120ms"><div class="screen-frame cut glow"><img src="assets/photo_2026-11-04_05-50-34.jpg" width="806" height="501" alt="Окно настроек Albion AI: скорость прицела, область захвата и другие параметры."><div class="visual-label"><b>Панель управления</b><span><span class="dot">●</span> Скриншот приложения</span></div></div></div>
+</div><div class="wrap stats"><article class="stat cut reveal" style="--delay:0ms"><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5.5 10.5 4.5v7H3zM13 4.2 21 3v8.5h-8zM3 13h7.5v7L3 19zM13 13h8v8l-8-1.2z"/></svg></span><h3>Для Windows</h3><p>Отдельное приложение с понятным интерфейсом и всеми настройками в одном окне.</p></article><article class="stat cut reveal" style="--delay:80ms"><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/><rect x="9.5" y="9.5" width="5" height="5"/></svg></span><h3>TensorRT / CUDA</h3><p>Распознавание объектов с ускорением через TensorRT и CUDA.</p></article><article class="stat cut reveal" style="--delay:160ms"><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20C8 20 7 4 13 4s4 10 8 10"/><circle cx="3" cy="20" r="1.5"/><circle cx="21" cy="14" r="1.5"/></svg></span><h3>5 траекторий</h3><p>Adaptive, Linear, Bezier и Exponential — форма движения на ваш выбор.</p></article><article class="stat cut reveal" style="--delay:240ms"><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3h11l3 3v15H5z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/></svg></span><h3>Свои конфиги</h3><p>Сохраняйте и загружайте настройки для разных сценариев.</p></article></div></section>
+<section class="section" id="features"><div class="wrap"><div class="section-head reveal"><div><div class="section-index"><span>01 /</span> ВОЗМОЖНОСТИ</div><h2>Настройка <em>под&nbsp;вас.</em></h2></div><p class="section-lead">Основные параметры собраны в одном интерфейсе — от области захвата до сохранения конфигураций.</p></div>
+<div class="feature-grid"><article class="feature cut reveal"><div class="feature-number">01</div><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 1v5M12 18v5M1 12h5M18 12h5"/></svg></span><h3>Управление наведением</h3><p>Скорость, область захвата, часть тела и смещение по вертикали.</p></article><article class="feature cut reveal" style="--delay:80ms"><div class="feature-number">02</div><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 6H15a3.5 3.5 0 0 1 0 7H9a3.5 3.5 0 0 0 0 7h6.5"/></svg></span><h3>Метод и траектория</h3><p>Выбор способа наведения и формы движения в настройках приложения.</p></article><article class="feature cut reveal" style="--delay:160ms"><div class="feature-number">03</div><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Визуализация</h3><p>Область захвата, распознанные объекты, статус и уверенность на экране.</p></article><article class="feature cut reveal"><div class="feature-number">04</div><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg></span><h3>Модель</h3><p>Выбор модели распознавания и настройка порога уверенности.</p></article><article class="feature cut reveal" style="--delay:80ms"><div class="feature-number">05</div><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6h6l2 2h10v11H3z"/><path d="M8 14h8"/></svg></span><h3>Конфигурации</h3><p>Сохранение и загрузка настроек для разных сценариев.</p></article><article class="feature cut reveal" style="--delay:160ms"><div class="feature-number">06</div><span class="icon-tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></span><h3>Под рукой</h3><p>Ключевые параметры и состояние приложения доступны в одном окне.</p></article></div>
+<div class="mini-note"><span aria-hidden="true">▶</span><p>Возможности и показатели зависят от версии приложения, выбранной модели и оборудования.</p></div></div></section>
+<section class="section sequence" id="workflow"><div class="wrap sequence-layout"><div class="sequence-intro reveal"><div class="section-index"><span>02 /</span> ОБЗОР</div><h2>От распознавания<br>к <em>настройке.</em></h2><p>Четыре части интерфейса помогают увидеть, как устроен рабочий процесс.</p><button class="replay" type="button" hidden><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v5h-5"/></svg>Повторить анимацию</button><div class="sequence-progress" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i></div></div>
+<ol class="sequence-list" aria-label="Обзор возможностей"><li class="step cut reveal" style="--i:0"><span class="step-num">01</span><div><h3>Распознавание</h3><p>Выберите модель и настройте порог уверенности.</p></div></li><li class="step cut reveal" style="--i:1"><span class="step-num">02</span><div><h3>Наведение</h3><p>Задайте скорость, область захвата и метод движения.</p></div></li><li class="step cut reveal" style="--i:2"><span class="step-num">03</span><div><h3>Визуализация</h3><p>Включите отображение нужной информации на экране.</p></div></li><li class="step cut reveal" style="--i:3"><span class="step-num">04</span><div><h3>Конфигурация</h3><p>Сохраните настройки, чтобы загрузить их позже.</p></div></li></ol></div></section>
+<section class="section" id="interface"><div class="wrap"><div class="section-head reveal"><div><div class="section-index"><span>03 /</span> ИНТЕРФЕЙС</div><h2>Всё на <em>своих местах.</em></h2></div><p class="section-lead">Настоящие экраны приложения — без концептов и условных макетов.</p></div>
 <div class="playground-intro"><div><h3>Попробуйте прямо на скриншотах.</h3><p>Двигайте ползунки и нажимайте элементы. Это интерактивная демонстрация: она не меняет настройки приложения.</p></div></div>
-<div class="playground" id="interactive-demo">
+<div class="playground cut" id="interactive-demo">
 <div class="playground-top"><strong>Albion AI / интерактивный просмотр</strong><span>Изменения только на этой странице</span></div>
 <div class="snap-tabs" role="tablist" aria-label="Выбор экрана приложения" hidden>
 <button type="button" role="tab" id="st-settings" aria-controls="sp-settings" aria-selected="true">Настройки</button>
@@ -88,12 +219,26 @@ section[id]{scroll-margin-top:24px}.section{padding:112px 0;border-bottom:1px so
 </div>
 
 <div class="playground-intro"><div><h3>Оригинальные скриншоты</h3><p>Изображения без интерактивного слоя — можно открыть каждое в полном размере.</p></div></div>
-<div class="gallery-grid"><figure class="shot reveal"><a href="assets/photo_2026-11-04_05-50-34.jpg" target="_blank" rel="noopener" aria-label="Открыть скриншот настроек в полном размере, новая вкладка"><img src="assets/photo_2026-11-04_05-50-34.jpg" width="806" height="501" loading="lazy" alt="Настройки наведения в Albion AI"><div class="shot-caption"><div><div class="shot-title">Настройки</div><span class="shot-desc">Наведение и область захвата</span></div><span class="shot-open">Крупнее ↗</span></div></a></figure><figure class="shot reveal" style="--delay:80ms"><a href="assets/photo_2026-11-04_05-50-37.jpg" target="_blank" rel="noopener" aria-label="Открыть скриншот визуализации в полном размере, новая вкладка"><img src="assets/photo_2026-11-04_05-50-37.jpg" width="808" height="511" loading="lazy" alt="Параметры визуализации области захвата и объектов"><div class="shot-caption"><div><div class="shot-title">Визуализация</div><span class="shot-desc">Информация на экране</span></div><span class="shot-open">Крупнее ↗</span></div></a></figure><figure class="shot reveal"><a href="assets/photo_2026-11-04_05-50-40.jpg" target="_blank" rel="noopener" aria-label="Открыть скриншот модели в полном размере, новая вкладка"><img src="assets/photo_2026-11-04_05-50-40.jpg" width="812" height="512" loading="lazy" alt="Выбор модели и порога уверенности"><div class="shot-caption"><div><div class="shot-title">Модель</div><span class="shot-desc">Распознавание и уверенность</span></div><span class="shot-open">Крупнее ↗</span></div></a></figure><figure class="shot reveal" style="--delay:80ms"><a href="assets/photo_2026-11-04_05-50-44.jpg" target="_blank" rel="noopener" aria-label="Открыть скриншот конфигураций в полном размере, новая вкладка"><img src="assets/photo_2026-11-04_05-50-44.jpg" width="814" height="505" loading="lazy" alt="Список сохранённых конфигураций приложения"><div class="shot-caption"><div><div class="shot-title">Конфигурации</div><span class="shot-desc">Сохранение и загрузка</span></div><span class="shot-open">Крупнее ↗</span></div></a></figure></div><p class="caption-note">Нажмите на изображение, чтобы открыть его в полном размере. Показатели на скриншотах приведены как пример, не как гарантия производительности.</p></div></section>
-<section class="section demo-section" id="demo"><div class="wrap demo-layout"><div class="demo-copy reveal"><div class="section-index"><span>04 /</span> ДЕМОНСТРАЦИЯ</div><h2>Посмотрите<br>в действии.</h2><p>Демонстрация Albion AI на тренировочной карте Fortnite.</p><p class="tiny">Видео запускается по вашему нажатию. Ник в показанной версии скрыт.</p></div><div class="video-frame reveal" style="--delay:100ms"><video controls playsinline preload="none" poster="assets/demo-poster.jpg" aria-label="Демонстрация Albion AI на тренировочной карте Fortnite"><source src="assets/albion-demo-blurred.mp4" type="video/mp4">Ваш браузер не поддерживает встроенное видео. <a href="assets/albion-demo-blurred.mp4">Открыть видео</a>.</video><div class="video-caption"><span>FORTNITE / ТРЕНИРОВОЧНАЯ КАРТА</span><span>30 сек.</span></div></div></div></section>
-<section class="final"><div class="wrap"><div class="final-inner reveal"><div><div class="eyebrow">ALBION AI</div><h2>Детали решают.</h2><p>Посмотрите, как интерфейс работает в действии.</p></div><a class="btn btn-primary" href="#demo">К демонстрации <span aria-hidden="true">↗</span></a></div></div></section>
+<div class="gallery-grid"><figure class="shot cut reveal"><a href="assets/photo_2026-11-04_05-50-34.jpg" target="_blank" rel="noopener" aria-label="Открыть скриншот настроек в полном размере, новая вкладка"><img src="assets/photo_2026-11-04_05-50-34.jpg" width="806" height="501" loading="lazy" alt="Настройки наведения в Albion AI"><div class="shot-caption"><div><div class="shot-title">Настройки</div><span class="shot-desc">Наведение и область захвата</span></div><span class="shot-open">Крупнее ↗</span></div></a></figure><figure class="shot cut reveal" style="--delay:80ms"><a href="assets/photo_2026-11-04_05-50-37.jpg" target="_blank" rel="noopener" aria-label="Открыть скриншот визуализации в полном размере, новая вкладка"><img src="assets/photo_2026-11-04_05-50-37.jpg" width="808" height="511" loading="lazy" alt="Параметры визуализации области захвата и объектов"><div class="shot-caption"><div><div class="shot-title">Визуализация</div><span class="shot-desc">Информация на экране</span></div><span class="shot-open">Крупнее ↗</span></div></a></figure><figure class="shot cut reveal"><a href="assets/photo_2026-11-04_05-50-40.jpg" target="_blank" rel="noopener" aria-label="Открыть скриншот модели в полном размере, новая вкладка"><img src="assets/photo_2026-11-04_05-50-40.jpg" width="812" height="512" loading="lazy" alt="Выбор модели и порога уверенности"><div class="shot-caption"><div><div class="shot-title">Модель</div><span class="shot-desc">Распознавание и уверенность</span></div><span class="shot-open">Крупнее ↗</span></div></a></figure><figure class="shot cut reveal" style="--delay:80ms"><a href="assets/photo_2026-11-04_05-50-44.jpg" target="_blank" rel="noopener" aria-label="Открыть скриншот конфигураций в полном размере, новая вкладка"><img src="assets/photo_2026-11-04_05-50-44.jpg" width="814" height="505" loading="lazy" alt="Список сохранённых конфигураций приложения"><div class="shot-caption"><div><div class="shot-title">Конфигурации</div><span class="shot-desc">Сохранение и загрузка</span></div><span class="shot-open">Крупнее ↗</span></div></a></figure></div><p class="caption-note">Нажмите на изображение, чтобы открыть его в полном размере. Показатели на скриншотах приведены как пример, не как гарантия производительности.</p></div></section>
+<section class="section demo-section" id="demo"><div class="wrap demo-layout"><div class="demo-copy reveal"><div class="section-index"><span>04 /</span> ДЕМОНСТРАЦИЯ</div><h2>Посмотрите<br>в <em>действии.</em></h2><p>Демонстрация Albion AI на тренировочной карте Fortnite.</p><p class="tiny">Видео запускается по вашему нажатию. Ник в показанной версии скрыт.</p></div><div class="video-frame cut reveal" style="--delay:100ms"><video controls playsinline preload="none" poster="assets/demo-poster.jpg" aria-label="Демонстрация Albion AI на тренировочной карте Fortnite"><source src="assets/albion-demo-blurred.mp4" type="video/mp4">Ваш браузер не поддерживает встроенное видео. <a href="assets/albion-demo-blurred.mp4">Открыть видео</a>.</video><div class="video-caption"><span>FORTNITE / ТРЕНИРОВОЧНАЯ КАРТА</span><span>30 сек.</span></div></div></div></section>
+<section class="faq" id="faq"><div class="wrap"><h2 class="reveal">Частые <em>вопросы</em></h2><div class="faq-list"><details class="cut tl"><summary>Как это работает?</summary><p>Приложение распознаёт объекты на экране выбранной моделью. Наведение и визуализация настраиваются в одном окне: скорость, область захвата, траектория и порог уверенности.</p></details><details class="cut tl"><summary>Какие способы наведения есть в настройках?</summary><p>В настройках выбирается способ наведения (например, WinAPI SendInput) и одна из траекторий: Adaptive, Linear, Quadratic Bezier, Cubic Bezier или Exponential.</p></details><details class="cut tl"><summary>Можно ли сохранить свои настройки?</summary><p>Да. В разделе «Конфигурации» настройки сохраняются под своим названием и загружаются, когда нужны.</p></details><details class="cut tl"><summary>Меняет ли демо на сайте настройки приложения?</summary><p>Нет. Интерактивные скриншоты работают только на этой странице и ничего никуда не передают.</p></details><details class="cut tl"><summary>Где посмотреть, как это выглядит в игре?</summary><p>В разделе <a href="#demo">«Демонстрация»</a> — 30-секундное видео на тренировочной карте Fortnite.</p></details></div><div class="disclaimer cut reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 11v6M12 7.5v.5"/></svg><div><b>Дисклеймер</b><p>Возможности и показатели зависят от версии приложения, выбранной модели и оборудования. Цифры на скриншотах — пример, а не гарантия. Перед использованием проверьте правила конкретной игры.</p></div></div></div></section>
+<section class="final"><div class="wrap"><div class="final-inner cut tl glow reveal"><div><div class="eyebrow">ALBION AI</div><h2>Детали <em>решают.</em></h2><p>Посмотрите, как интерфейс работает в действии.</p></div><a class="btn btn-primary" href="#demo">К демонстрации <span aria-hidden="true">↗</span></a></div></div></section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><a href="#top">Albion AI ↑</a><p>Перед использованием проверьте правила конкретной игры.</p></div></footer>
+<footer class="footer"><div class="wrap footer-inner"><div class="left"><b>Albion AI</b><i class="sep"></i><span>© 2026</span><i class="sep"></i><span>Перед использованием проверьте правила конкретной игры.</span></div><a href="#top">Наверх ↑</a></div></footer>
 <script>
+(()=>{const c=document.getElementById('net');if(!c)return;const g=c.getContext('2d');const rm=matchMedia('(prefers-reduced-motion: reduce)');
+let w,h,dpr,pts=[],mouse={x:-9999,y:-9999},raf=0;const col=getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb').trim()||'255,61,85';
+function size(){dpr=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;c.width=w*dpr;c.height=h*dpr;g.setTransform(dpr,0,0,dpr,0,0);
+ const n=Math.round(Math.min(90,w*h/16000));pts=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.6+.8}))}
+function frame(move){g.clearRect(0,0,w,h);const L=150;
+ for(const p of pts){if(move){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1}}
+ for(let i=0;i<pts.length;i++){const a=pts[i];for(let j=i+1;j<pts.length;j++){const b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);if(d<L){g.strokeStyle=`rgba(${col},${(1-d/L)*.28})`;g.lineWidth=1;g.beginPath();g.moveTo(a.x,a.y);g.lineTo(b.x,b.y);g.stroke()}}
+  const md=Math.hypot(a.x-mouse.x,a.y-mouse.y);if(md<190){g.strokeStyle=`rgba(${col},${(1-md/190)*.5})`;g.beginPath();g.moveTo(a.x,a.y);g.lineTo(mouse.x,mouse.y);g.stroke()}
+  g.fillStyle=`rgba(${col},.7)`;g.beginPath();g.arc(a.x,a.y,a.r,0,7);g.fill()}}
+function loop(){frame(true);raf=requestAnimationFrame(loop)}
+function start(){cancelAnimationFrame(raf);if(rm.matches||document.hidden){frame(false)}else loop()}
+addEventListener('resize',()=>{size();start()});addEventListener('pointermove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;if(rm.matches)frame(false)});
+document.addEventListener('visibilitychange',start);rm.addEventListener?.('change',start);size();start()})();
 (()=>{
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const items=[...document.querySelectorAll('.reveal')];
